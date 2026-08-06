@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bjr5ikpiudlbu"]
+
+[ext_resource type="Script" uid="uid://cmmd1oauqhugu" path="res://scripts/BaseProjectile.gd" id="1_8thbs"]
+
+[node name="Projectile" type="Area2D" unique_id=1892110915]
+script = ExtResource("1_8thbs")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

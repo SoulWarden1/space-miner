@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c0d02yayvmpeg"]
+
+[ext_resource type="PackedScene" uid="uid://b3ratxk7rjeef" path="res://scenes/ships/BaseShip.tscn" id="1_5m1dw"]
+[ext_resource type="Script" uid="uid://b8uw0nneo6cb3" path="res://scripts/PlayerShip.gd" id="2_jfo76"]
+
+[node name="Spaceship" unique_id=512002788 instance=ExtResource("1_5m1dw")]
+mass = 10.0
+max_contacts_reported = 5
+script = ExtResource("2_jfo76")
+thrust = 400.0
+torque = 10000.0
+max_speed = 500.0

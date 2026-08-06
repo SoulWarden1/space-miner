@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b3ratxk7rjeef"]
+
+[ext_resource type="Script" uid="uid://dwku4u1v4pm0y" path="res://scripts/BaseShip.gd" id="1_qlxi4"]
+
+[node name="BaseShip" type="RigidBody2D" unique_id=341354267 groups=["Ships"]]
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_qlxi4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

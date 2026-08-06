@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c11tws0ep0dc7"]
+
+[ext_resource type="PackedScene" uid="uid://1wphs1b0kyqk" path="res://scenes/ships/player_ships/FirstShip.tscn" id="1_ibkli"]
+[ext_resource type="PackedScene" uid="uid://dxxpbovr85uj1" path="res://scenes/asteroids/PlainAsteroid.tscn" id="2_qbsmt"]
+[ext_resource type="Script" uid="uid://b724o18jfqjh8" path="res://scripts/GameManager.gd" id="3_cpr0p"]
+
+[node name="Game" type="Node2D" unique_id=1429756595]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=865998879]
+
+[node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=1492984364]
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 237.0
+offset_bottom = 37.0
+value = 100.0
+rounded = true
+
+[node name="GameManager" type="Node" parent="." unique_id=188181057]
+unique_name_in_owner = true
+script = ExtResource("3_cpr0p")
+
+[node name="Ships" type="Node" parent="." unique_id=1556251781]
+
+[node name="FirstShip" parent="Ships" unique_id=512002788 instance=ExtResource("1_ibkli")]
+position = Vector2(500, 317)
+mass = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="Ships/FirstShip" unique_id=1720289708]
+zoom = Vector2(0.5, 0.5)
+
+[node name="PlainAsteroid" parent="." unique_id=1210074526 instance=ExtResource("2_qbsmt")]
+position = Vector2(-122, 19)
+max_contacts_reported = 0
+
+[node name="PlainAsteroid2" parent="." unique_id=360143015 instance=ExtResource("2_qbsmt")]
+position = Vector2(871, 63)
+max_contacts_reported = 0
+
+[node name="PlainAsteroid3" parent="." unique_id=844494956 instance=ExtResource("2_qbsmt")]
+position = Vector2(76, 511)
+max_contacts_reported = 0
+
+[node name="PlainAsteroid4" parent="." unique_id=340039270 instance=ExtResource("2_qbsmt")]
+position = Vector2(786, 462)
+max_contacts_reported = 0
+
+[node name="PlainAsteroid5" parent="." unique_id=660657120 instance=ExtResource("2_qbsmt")]
+position = Vector2(515, -122)
+max_contacts_reported = 0

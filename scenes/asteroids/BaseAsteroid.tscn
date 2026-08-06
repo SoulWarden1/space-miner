@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cwot6s3hfo3ls"]
+
+[ext_resource type="Script" uid="uid://biow6sco48v5m" path="res://scripts/BaseAsteroid.gd" id="1_pgk3p"]
+
+[node name="BaseAsteroid" type="RigidBody2D" unique_id=1210074526 groups=["Asteroids"]]
+mass = 100.0
+gravity_scale = 0.0
+max_contacts_reported = 5
+script = ExtResource("1_pgk3p")
