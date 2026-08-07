@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://c11tws0ep0dc7"]
 
-[ext_resource type="PackedScene" uid="uid://1wphs1b0kyqk" path="res://scenes/ships/player_ships/FirstShip.tscn" id="1_ibkli"]
+[ext_resource type="Script" uid="uid://cq0mc6po132xa" path="res://scripts/camera.gd" id="1_78awf"]
+[ext_resource type="PackedScene" uid="uid://cqwrm0aahl44j" path="res://scenes/ships/player_ships/second_ship.tscn" id="2_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://dxxpbovr85uj1" path="res://scenes/asteroids/PlainAsteroid.tscn" id="2_qbsmt"]
 [ext_resource type="Script" uid="uid://b724o18jfqjh8" path="res://scripts/GameManager.gd" id="3_cpr0p"]
 
 [node name="Game" type="Node2D" unique_id=1429756595]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1257348252]
+ignore_rotation = false
+script = ExtResource("1_78awf")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=865998879]
 
@@ -15,6 +20,14 @@ offset_right = 237.0
 offset_bottom = 37.0
 value = 100.0
 rounded = true
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="HUD" unique_id=1247981220]
+offset_left = 107.0
+offset_top = 11.0
+offset_right = 147.0
+offset_bottom = 34.0
+text = "100"
 
 [node name="GameManager" type="Node" parent="." unique_id=188181057]
 unique_name_in_owner = true
@@ -22,27 +35,24 @@ script = ExtResource("3_cpr0p")
 
 [node name="Ships" type="Node" parent="." unique_id=1556251781]
 
-[node name="FirstShip" parent="Ships" unique_id=512002788 instance=ExtResource("1_ibkli")]
-position = Vector2(500, 317)
-mass = 1.0
-
-[node name="Camera2D" type="Camera2D" parent="Ships/FirstShip" unique_id=1720289708]
-zoom = Vector2(0.5, 0.5)
+[node name="Spaceship" parent="Ships" unique_id=512002788 instance=ExtResource("2_cpr0p")]
+position = Vector2(526, 305)
+collision_mask = 2
 
 [node name="PlainAsteroid" parent="." unique_id=1210074526 instance=ExtResource("2_qbsmt")]
-position = Vector2(-122, 19)
+position = Vector2(-153, 210)
 max_contacts_reported = 0
 
 [node name="PlainAsteroid2" parent="." unique_id=360143015 instance=ExtResource("2_qbsmt")]
-position = Vector2(871, 63)
+position = Vector2(1115, 40)
 max_contacts_reported = 0
 
 [node name="PlainAsteroid3" parent="." unique_id=844494956 instance=ExtResource("2_qbsmt")]
-position = Vector2(76, 511)
+position = Vector2(1323, 384)
 max_contacts_reported = 0
 
 [node name="PlainAsteroid4" parent="." unique_id=340039270 instance=ExtResource("2_qbsmt")]
-position = Vector2(786, 462)
+position = Vector2(991, 565)
 max_contacts_reported = 0
 
 [node name="PlainAsteroid5" parent="." unique_id=660657120 instance=ExtResource("2_qbsmt")]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bvaecoo0ad6vp"]
+
+[ext_resource type="Script" uid="uid://e8alnpshgo0w" path="res://scripts/turret.gd" id="1_75s58"]
+[ext_resource type="Texture2D" uid="uid://cijp8oj5xbk2v" path="res://assets/Turret.png" id="2_4sggw"]
+[ext_resource type="PackedScene" uid="uid://1amc15lqn5ab" path="res://scenes/projectiles/Bullet.tscn" id="2_tbwx1"]
+
+[node name="Turret" type="Node2D" unique_id=1272430684 groups=["Turrets"]]
+script = ExtResource("1_75s58")
+projectile_scene = ExtResource("2_tbwx1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1446135826]
+position = Vector2(0, -10)
+scale = Vector2(0.5113636, 0.4848485)
+texture = ExtResource("2_4sggw")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1709407848]
+position = Vector2(0, -32)

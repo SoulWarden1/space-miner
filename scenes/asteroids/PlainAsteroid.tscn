@@ -1,15 +1,19 @@
 [gd_scene format=3 uid="uid://dxxpbovr85uj1"]
 
 [ext_resource type="PackedScene" uid="uid://cwot6s3hfo3ls" path="res://scenes/asteroids/BaseAsteroid.tscn" id="1_7ymqd"]
-[ext_resource type="Texture2D" uid="uid://dnohhh4ifgd6h" path="res://assets/icon.svg" id="2_miemc"]
+[ext_resource type="Texture2D" uid="uid://dliogcuj22cai" path="res://assets/Asteroid.png" id="2_7ymqd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rw38"]
-size = Vector2(120, 120)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kiw3p"]
+radius = 70.0
+height = 232.0
 
 [node name="PlainAsteroid" unique_id=1210074526 instance=ExtResource("1_7ymqd")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1140225401]
-texture = ExtResource("2_miemc")
+texture = ExtResource("2_7ymqd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=1503089914]
-shape = SubResource("RectangleShape2D_6rw38")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_kiw3p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

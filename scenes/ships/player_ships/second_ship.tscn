@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cqwrm0aahl44j"]
+
+[ext_resource type="PackedScene" uid="uid://c0d02yayvmpeg" path="res://scenes/ships/player_ships/PlayerShip.tscn" id="1_64vwq"]
+[ext_resource type="Texture2D" uid="uid://dnohhh4ifgd6h" path="res://assets/icon.svg" id="2_685ht"]
+[ext_resource type="PackedScene" uid="uid://bvaecoo0ad6vp" path="res://scenes/Turret.tscn" id="3_64vwq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rw38"]
+size = Vector2(114, 370)
+
+[node name="Spaceship" unique_id=512002788 instance=ExtResource("1_64vwq")]
+thrust = 700.0
+torque = 40000.0
+max_health = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=499383658]
+scale = Vector2(0.921875, 2.890625)
+texture = ExtResource("2_685ht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=1447910984]
+shape = SubResource("RectangleShape2D_6rw38")
+
+[node name="Turret" parent="." index="2" unique_id=1272430684 instance=ExtResource("3_64vwq")]
+position = Vector2(0, -128)
+
+[node name="Turret2" parent="." index="3" unique_id=1706177988 instance=ExtResource("3_64vwq")]
+position = Vector2(0, 130)

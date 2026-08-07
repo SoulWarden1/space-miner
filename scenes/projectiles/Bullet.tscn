@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://1amc15lqn5ab"]
+
+[ext_resource type="PackedScene" uid="uid://bjr5ikpiudlbu" path="res://scenes/projectiles/BaseProjectile.tscn" id="1_ci251"]
+[ext_resource type="Texture2D" uid="uid://dnohhh4ifgd6h" path="res://assets/icon.svg" id="2_36ope"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rw38"]
+radius = 16.0
+
+[node name="Projectile" unique_id=1892110915 instance=ExtResource("1_ci251")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1770660775]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_36ope")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=151440400]
+shape = SubResource("CircleShape2D_6rw38")

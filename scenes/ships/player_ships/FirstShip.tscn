@@ -2,14 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://c0d02yayvmpeg" path="res://scenes/ships/player_ships/PlayerShip.tscn" id="1_nhe5p"]
 [ext_resource type="Texture2D" uid="uid://dnohhh4ifgd6h" path="res://assets/icon.svg" id="2_ep6bt"]
+[ext_resource type="PackedScene" uid="uid://bvaecoo0ad6vp" path="res://scenes/Turret.tscn" id="3_7l564"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rw38"]
 radius = 62.008064
 
 [node name="FirstShip" unique_id=512002788 instance=ExtResource("1_nhe5p")]
+max_health = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0" unique_id=630792762]
 shape = SubResource("CircleShape2D_6rw38")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=768650533]
 texture = ExtResource("2_ep6bt")
+
+[node name="Turret" parent="." index="2" unique_id=1272430684 instance=ExtResource("3_7l564")]
+position = Vector2(0, -50)

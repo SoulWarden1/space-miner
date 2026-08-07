@@ -13,13 +13,16 @@ func get_input() -> Vector2:
 func _physics_process(delta: float) -> void:
 	handle_movement()
 	handle_rotation()
+	
+	if Input.is_action_pressed("shoot"):
+		for turret in get_tree().get_nodes_in_group("Turrets"):
+			turret.fire()
 
 func handle_movement() -> void:
 	var direction = get_input()
 	
 	if direction.length() != 0:
 		apply_central_force(direction.rotated(rotation) * thrust)
-
 
 func handle_rotation() -> void:
 	var rotate_input = Input.get_axis(

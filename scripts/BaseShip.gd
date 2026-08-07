@@ -3,12 +3,16 @@ class_name BaseShip
 
 signal health_changed(current_health, max_health)
 
-@export var max_health := 100
-var health: int = max_health
+@export var max_health: int
+var health: int
 
 var collision_cooldown := false
 
 @onready var shield = get_node_or_null("ShieldComponent")
+
+func _ready():
+	health = max_health
+	health_changed.emit(health, max_health)
 
 func take_damage(amount: int) -> void:
 	if shield:
