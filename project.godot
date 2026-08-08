@@ -29,8 +29,8 @@ version_control/autoload_on_startup=true
 
 Ships=""
 Asteroids=""
-Turrets=""
 PlayerShip=""
+Weapons=""
 
 [input]
 

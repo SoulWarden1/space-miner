@@ -37,7 +37,6 @@ script = ExtResource("3_cpr0p")
 
 [node name="Spaceship" parent="Ships" unique_id=512002788 instance=ExtResource("2_cpr0p")]
 position = Vector2(526, 305)
-collision_mask = 2
 
 [node name="PlainAsteroid" parent="." unique_id=1210074526 instance=ExtResource("2_qbsmt")]
 position = Vector2(-153, 210)

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://r3gievvebdyk"]
+
+[ext_resource type="PackedScene" uid="uid://blildhylg3ahm" path="res://scenes/ships/weapons/turrets/BaseTurret.tscn" id="1_8jwpu"]
+[ext_resource type="Texture2D" uid="uid://cijp8oj5xbk2v" path="res://assets/Turret.png" id="2_ag5vi"]
+[ext_resource type="PackedScene" uid="uid://1amc15lqn5ab" path="res://scenes/projectiles/Bullet.tscn" id="2_s6ncv"]
+
+[node name="OneBarrelTurret" unique_id=1228362028 instance=ExtResource("1_8jwpu")]
+position = Vector2(0, -20)
+projectile_scene = ExtResource("2_s6ncv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1866176575]
+position = Vector2(11.999999, 25)
+scale = Vector2(0.6306818, 0.6060606)
+texture = ExtResource("2_ag5vi")
+
+[node name="Marker2D" type="Marker2D" parent="." index="1" unique_id=1693408188]
+position = Vector2(0, -40)

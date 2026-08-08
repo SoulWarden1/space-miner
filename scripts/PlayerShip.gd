@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	handle_rotation()
 	
 	if Input.is_action_pressed("shoot"):
-		for turret in get_tree().get_nodes_in_group("Turrets"):
+		for turret in get_tree().get_nodes_in_group("Weapons"):
 			turret.fire()
 
 func handle_movement() -> void:
