@@ -19,7 +19,6 @@ func destroy():
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	print("Bullet hit")
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 		

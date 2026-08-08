@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dnohhh4ifgd6h" path="res://assets/icon.svg" id="2_685ht"]
 [ext_resource type="PackedScene" uid="uid://r3gievvebdyk" path="res://scenes/ships/weapons/turrets/OneBarrelTurret.tscn" id="3_685ht"]
 [ext_resource type="PackedScene" uid="uid://s3lnbroacwhy" path="res://scenes/ships/weapons/turrets/TwinBarrelTurret.tscn" id="4_ted0e"]
+[ext_resource type="PackedScene" uid="uid://bpy8mrqsqcnhb" path="res://scenes/ships/components/ShieldComponent.tscn" id="5_ted0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rw38"]
 size = Vector2(114, 370)
@@ -26,3 +27,5 @@ rotate_speed = 4.0
 
 [node name="TwinBarrelTurret" parent="." index="3" unique_id=1891767101 instance=ExtResource("4_ted0e")]
 position = Vector2(1, 153)
+
+[node name="ShieldComponent" parent="." index="4" unique_id=53357698 instance=ExtResource("5_ted0e")]

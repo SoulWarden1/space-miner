@@ -1,19 +1,44 @@
-# ShieldComponent.gd
 extends Node
 class_name ShieldComponent
 
-@export var max_shield := 100
+signal shield_updated(current_shield, max_shield)
 
-var shield: int
+@onready var cooldown: Timer = $Cooldown
 
-func _ready():
+## The time before the shield starts to recharge
+@export var shield_cooldown_time: float = 1.0
+## The amount of shield regenerated per second
+@export var shield_regenerate_rate: float = 10.0
+## The maximum amount of shield
+@export var max_shield: float = 100.0
+
+var shield: float = 0.0
+var is_cooling_down := false
+
+func _ready() -> void:
 	shield = max_shield
+	cooldown.wait_time = shield_cooldown_time
 
 func absorb_damage(amount: int) -> int:
 	shield -= amount
+	is_cooling_down = true
+	cooldown.start()
 
 	if shield < 0:
 		var remaining_damage = -shield
 		shield = 0
 		return remaining_damage
+
 	return 0
+
+
+func _on_cooldown_timeout() -> void:
+	is_cooling_down = false
+
+
+func _process(delta: float) -> void:
+	if not is_cooling_down and shield < max_shield:
+		shield += shield_regenerate_rate * delta
+		shield = min(shield, max_shield)
+
+		shield_updated.emit(shield, max_shield)

@@ -4,3 +4,8 @@
 
 [node name="ShieldComponent" type="Node" unique_id=53357698]
 script = ExtResource("1_l4q8w")
+
+[node name="Cooldown" type="Timer" parent="." unique_id=1360822041]
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

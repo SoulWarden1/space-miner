@@ -2,6 +2,7 @@ extends Node2D
 class_name BaseWeapon
 
 @export var projectile_scene: PackedScene
+## The fire rate per second
 @export var fire_rate := 1.0
 var muzzles: Array[Marker2D]
 

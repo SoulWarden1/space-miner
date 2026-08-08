@@ -3,5 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://d2xit4oef4ix7" path="res://scenes/ships/weapons/BaseWeapon.tscn" id="1_ag5uv"]
 [ext_resource type="Script" uid="uid://e8alnpshgo0w" path="res://scripts/BaseTurret.gd" id="2_gu755"]
 
-[node name="BaseTurret" unique_id=1228362028 groups=["Weapons"] instance=ExtResource("1_ag5uv")]
+[node name="BaseTurret" unique_id=1228362028 instance=ExtResource("1_ag5uv")]
 script = ExtResource("2_gu755")
+rotate_speed = 4.0

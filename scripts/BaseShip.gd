@@ -1,18 +1,25 @@
 extends RigidBody2D
 class_name BaseShip
 
-signal health_changed(current_health, max_health)
+signal health_changed(current_health, max_health, current_shield, max_shield)
 
 @export var max_health: int
 var health: int
 
 var collision_cooldown := false
-
-@onready var shield = get_node_or_null("ShieldComponent")
+@onready var shield: ShieldComponent = get_node_or_null("ShieldComponent")
 
 func _ready():
+	if shield:
+		shield.shield_updated.connect(shield_regenerated)
+	
 	health = max_health
-	health_changed.emit(health, max_health)
+	health_changed.emit(
+		health,
+		max_health,
+		shield.shield if shield else 0,
+		shield.max_shield if shield else 0
+	)
 
 func take_damage(amount: int) -> void:
 	if shield:
@@ -21,16 +28,25 @@ func take_damage(amount: int) -> void:
 	health -= amount
 	health = max(health, 0)
 	
-	health_changed.emit(health, max_health)
+	if shield:
+		health_changed.emit(health, max_health, shield.shield, shield.max_shield)
+	else:
+		health_changed.emit(health, max_health, 0, 0)
 	
 	if health <= 0:
 		destroy()
 
 func heal(amount: int) -> void:
 	health = clamp(health + amount, 0, max_health)
+	
+func shield_regenerated(current_shield, maximum_shield):
+	health_changed.emit(health, max_health, current_shield, maximum_shield)
 
 func destroy() -> void:
 	queue_free()
+	
+func get_shield():
+	return shield
 	
 func _on_body_entered(body: Node) -> void:
 	if collision_cooldown:

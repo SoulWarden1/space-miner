@@ -7,5 +7,6 @@ gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("1_qlxi4")
+max_health = null
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

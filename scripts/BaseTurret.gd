@@ -1,7 +1,7 @@
 extends BaseWeapon
 class_name BaseTurret
 
-# Radians per second
+## The rotation speed of the turret in radians per second
 @export var rotate_speed: float = 4.0
 
 func _process(delta: float) -> void:
