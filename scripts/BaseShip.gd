@@ -17,8 +17,8 @@ func _ready():
 	health_changed.emit(
 		health,
 		max_health,
-		shield.shield if shield else 0,
-		shield.max_shield if shield else 0
+		shield.shield if shield else 0.0,
+		shield.max_shield if shield else 0.0
 	)
 
 func take_damage(amount: int) -> void:

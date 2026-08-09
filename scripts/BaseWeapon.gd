@@ -1,6 +1,8 @@
+## Base weapon, for all weapons while shoot a projectile of some kind
 extends Node2D
 class_name BaseWeapon
 
+## The scene containing the projectile to be fired
 @export var projectile_scene: PackedScene
 ## The fire rate per second
 @export var fire_rate := 1.0
