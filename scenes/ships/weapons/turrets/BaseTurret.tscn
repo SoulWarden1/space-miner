@@ -3,6 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://d2xit4oef4ix7" path="res://scenes/ships/weapons/BaseWeapon.tscn" id="1_ag5uv"]
 [ext_resource type="Script" uid="uid://e8alnpshgo0w" path="res://scripts/BaseTurret.gd" id="2_gu755"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ag5uv"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="BaseTurret" unique_id=1228362028 instance=ExtResource("1_ag5uv")]
 script = ExtResource("2_gu755")
 rotate_speed = 4.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="0" unique_id=1855285351]
+replication_config = SubResource("SceneReplicationConfig_ag5uv")

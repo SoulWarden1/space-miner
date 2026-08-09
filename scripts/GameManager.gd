@@ -1,48 +1,64 @@
 extends Node
-@onready var health_bar: ProgressBar = $"../HUD/HealthBar"
-@onready var shield_bar: ProgressBar = $"../HUD/ShieldBar"
-@onready var health_label: Label = $"../HUD/HealthLabel"
+
+@export var player_ship_scene: PackedScene
+
+@onready var players: Node = $"../Players"
+@onready var spawner: MultiplayerSpawner = $"../MultiplayerSpawner"
 @onready var camera: Camera2D = $"../Camera2D"
 
-var player_ship: PlayerShip
 
 func _ready():
-	for node in get_tree().get_nodes_in_group("PlayerShip"):
-		if node is PlayerShip:
-			player_ship = node
-			camera.set_target(player_ship)
-			break
-			
-	# Checks if a player ship was found		
-	if not player_ship:
-		push_error("No player ship detected.")
-	
-	player_ship.health_changed.connect(update_health)
-	
-	if player_ship.get_shield() != null:
-		update_health(
-			player_ship.health,
-			player_ship.max_health,
-			player_ship.shield.shield,
-			player_ship.shield.max_shield
-		)
-	else:
-		update_health(
-			player_ship.health,
-			player_ship.max_health,
-			0,
-			0
-		)
-	
-func update_health(health: int, max_health: int, shield: int, max_shield: int):
-	shield_bar.visible = true if max_shield != 0 else false
-	health_bar.max_value = max_health
-	health_bar.value = health
-	
-	health_label.text = str(health)
-	
-	shield_bar.max_value = max_shield
-	shield_bar.value = shield
-	
-	
-	
+	NetworkManager.player_connected.connect(_on_peer_connected)
+	NetworkManager.player_disconnected.connect(_on_peer_disconnected)
+
+	spawner.spawn_function = _spawn_player
+
+	print("Has peer: ", multiplayer.has_multiplayer_peer())
+	print("Is server: ", multiplayer.is_server())
+	print("Unique ID: ", multiplayer.get_unique_id())
+
+	if multiplayer.has_multiplayer_peer() and multiplayer.is_server():
+		print("Scheduling host spawn")
+		spawn_player.call_deferred(multiplayer.get_unique_id())
+
+
+func _on_peer_connected(peer_id: int):
+	print("Player connected: ", peer_id)
+
+	if multiplayer.is_server():
+		spawn_player(peer_id)
+
+
+func _on_peer_disconnected(peer_id: int):
+	print("Player disconnected: ", peer_id)
+
+	if not multiplayer.is_server():
+		return
+
+	var player = players.get_node_or_null(str(peer_id))
+
+	if player:
+		player.queue_free()
+
+
+func spawn_player(peer_id: int):
+	if not multiplayer.is_server():
+		return
+
+	print("SERVER spawning ", peer_id)
+
+	var result = spawner.spawn(peer_id)
+
+	print("Spawner returned: ", result)
+
+
+func _spawn_player(peer_id: int) -> Node:
+	print("_spawn_player on local peer ", multiplayer.get_unique_id())
+	print("Creating player for peer ", peer_id)
+
+	var player = player_ship_scene.instantiate()
+
+	player.name = str(peer_id)
+	player.set_multiplayer_authority(peer_id)
+
+	return player

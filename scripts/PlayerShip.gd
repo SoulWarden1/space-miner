@@ -11,6 +11,9 @@ func get_input() -> Vector2:
 	return Vector2(horizontal, vertical)
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+	
 	handle_movement()
 	handle_rotation()
 	

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bgoxudku6eh02"]
+
+[ext_resource type="Script" uid="uid://r01rdn7reou0" path="res://scripts/main_menu.gd" id="1_yqorp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6rw38"]
+font_size = 48
+
+[node name="MainMenu" type="Control" unique_id=1794832800]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqorp")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1247524828]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.1728327, 0.17283267, 0.17283267, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1780754254]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 64.0
+offset_right = 719.0
+offset_bottom = 131.0
+text = "Trash Game"
+label_settings = SubResource("LabelSettings_6rw38")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=185780817]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 200.0
+offset_right = 768.0
+offset_bottom = 432.0
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=319712873]
+layout_mode = 2
+text = "Play"
+
+[node name="MultiplayerButton" type="Button" parent="VBoxContainer" unique_id=1835606989]
+layout_mode = 2
+text = "Multiplayer"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=2011250176]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1213284850]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
