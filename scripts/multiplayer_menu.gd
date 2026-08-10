@@ -20,7 +20,7 @@ func _on_host_button_pressed() -> void:
 
 func _on_join_button_pressed() -> void:
 	var error = NetworkManager.join_game("127.0.0.1")
-	#var error = NetworkManager.join_game("192.168.1.208")
+	#var error = NetworkManager.join_game("26.82.201.159")
 
 	if error != OK:
 		print("Could not start connection")

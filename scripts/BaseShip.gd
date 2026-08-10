@@ -1,28 +1,32 @@
 extends RigidBody2D
 class_name BaseShip
 
-signal health_changed(current_health, max_health, current_shield, max_shield)
+signal health_changed(
+	current_health,
+	max_health,
+	current_shield,
+	max_shield
+)
 
 @export var max_health: int
 var health: int
 
 var collision_cooldown := false
-@onready var shield: ShieldComponent = get_node_or_null("ShieldComponent")
+
+@onready var shield: ShieldComponent = get_node_or_null(
+	"ShieldComponent"
+)
+
 
 func _ready():
+	health = max_health
+
 	if shield:
 		shield.shield_updated.connect(shield_regenerated)
 
-	health = max_health
+	emit_health_state()
 
-	if multiplayer.is_server():
-		health_changed.emit(
-			health,
-			max_health,
-			shield.shield if shield else 0,
-			shield.max_shield if shield else 0
-		)
-		
+
 func take_damage(amount: int) -> void:
 	if not multiplayer.is_server():
 		return
@@ -33,6 +37,62 @@ func take_damage(amount: int) -> void:
 	health -= amount
 	health = max(health, 0)
 
+	sync_health_state.rpc(
+		health,
+		shield.shield if shield else 0
+	)
+
+	if health <= 0:
+		destroy()
+
+
+func heal(amount: int) -> void:
+	if not multiplayer.is_server():
+		return
+
+	health = clamp(
+		health + amount,
+		0,
+		max_health
+	)
+
+	sync_health_state.rpc(
+		health,
+		shield.shield if shield else 0
+	)
+
+
+func shield_regenerated(
+	current_shield,
+	maximum_shield
+):
+	if not multiplayer.is_server():
+		return
+		
+	print("Shield regenerated. Current shield: ", current_shield)
+	sync_health_state.rpc(
+		health,
+		current_shield
+	)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func sync_health_state(
+	new_health: int,
+	new_shield: int
+) -> void:
+	if multiplayer.get_remote_sender_id() != 1 and not multiplayer.is_server():
+		return
+
+	health = new_health
+
+	if shield:
+		shield.shield = new_shield
+
+	emit_health_state()
+
+
+func emit_health_state() -> void:
 	health_changed.emit(
 		health,
 		max_health,
@@ -40,21 +100,18 @@ func take_damage(amount: int) -> void:
 		shield.max_shield if shield else 0
 	)
 
-	if health <= 0:
-		destroy()
-
-func heal(amount: int) -> void:
-	health = clamp(health + amount, 0, max_health)
-	
-func shield_regenerated(current_shield, maximum_shield):
-	health_changed.emit(health, max_health, current_shield, maximum_shield)
 
 func destroy() -> void:
+	if not multiplayer.is_server():
+		return
+
 	queue_free()
-	
+
+
 func get_shield():
 	return shield
-	
+
+
 func _on_body_entered(body: Node) -> void:
 	if not multiplayer.is_server():
 		return
@@ -64,6 +121,7 @@ func _on_body_entered(body: Node) -> void:
 
 	if body.has_method("get_collision_damage"):
 		var impact_speed = linear_velocity.length()
+
 		var damage = int(
 			body.get_collision_damage()
 			+ (impact_speed / 5)

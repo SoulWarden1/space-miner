@@ -17,6 +17,7 @@ properties/3/spawn = true
 properties/3/replication_mode = 1
 
 [node name="BaseAsteroid" type="RigidBody2D" unique_id=1210074526 groups=["Asteroids"]]
+collision_mask = 3
 mass = 100.0
 gravity_scale = 0.0
 max_contacts_reported = 5

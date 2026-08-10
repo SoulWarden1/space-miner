@@ -23,9 +23,7 @@ func _ready():
 
 
 	if multiplayer.is_server():
-		print("Generating asteroids")
 		call_deferred("generate_asteroids")
-		print("Finished generating asteroids")
 
 
 func _on_peer_connected(peer_id: int):
