@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c11tws0ep0dc7"]
 
 [ext_resource type="Script" uid="uid://cq0mc6po132xa" path="res://scripts/camera.gd" id="1_78awf"]
-[ext_resource type="PackedScene" uid="uid://dxxpbovr85uj1" path="res://scenes/asteroids/PlainAsteroid.tscn" id="2_qbsmt"]
 [ext_resource type="Script" uid="uid://b724o18jfqjh8" path="res://scripts/GameManager.gd" id="3_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://cqwrm0aahl44j" path="res://scenes/ships/player_ships/second_ship.tscn" id="3_s0nni"]
 [ext_resource type="Script" uid="uid://btv6ubbmi0lgi" path="res://scripts/projectile_manager.gd" id="4_s0nni"]
+[ext_resource type="Script" uid="uid://bmrarjv5dmymk" path="res://scripts/asteroid_manager.gd" id="5_s0nni"]
 
 [node name="Game" type="Node2D" unique_id=1429756595]
 
@@ -45,30 +45,7 @@ player_ship_scene = ExtResource("3_s0nni")
 script = ExtResource("4_s0nni")
 
 [node name="AsteroidManager" type="Node" parent="." unique_id=820966773]
-
-[node name="Players" type="Node" parent="." unique_id=1556251781]
-
-[node name="Asteroids" type="Node" parent="." unique_id=563474928]
-
-[node name="PlainAsteroid" parent="Asteroids" unique_id=1210074526 instance=ExtResource("2_qbsmt")]
-position = Vector2(-153, 210)
-max_contacts_reported = 0
-
-[node name="PlainAsteroid2" parent="Asteroids" unique_id=360143015 instance=ExtResource("2_qbsmt")]
-position = Vector2(1115, 40)
-max_contacts_reported = 0
-
-[node name="PlainAsteroid3" parent="Asteroids" unique_id=844494956 instance=ExtResource("2_qbsmt")]
-position = Vector2(1323, 384)
-max_contacts_reported = 0
-
-[node name="PlainAsteroid4" parent="Asteroids" unique_id=340039270 instance=ExtResource("2_qbsmt")]
-position = Vector2(991, 565)
-max_contacts_reported = 0
-
-[node name="PlainAsteroid5" parent="Asteroids" unique_id=660657120 instance=ExtResource("2_qbsmt")]
-position = Vector2(515, -122)
-max_contacts_reported = 0
+script = ExtResource("5_s0nni")
 
 [node name="PlayerMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2132111596]
 _spawnable_scenes = PackedStringArray("uid://c0d02yayvmpeg")
@@ -82,4 +59,8 @@ spawn_path = NodePath("../Projectiles")
 _spawnable_scenes = PackedStringArray("uid://cwot6s3hfo3ls")
 spawn_path = NodePath("../Asteroids")
 
+[node name="Asteroids" type="Node" parent="." unique_id=563474928]
+
 [node name="Projectiles" type="Node" parent="." unique_id=1705872626]
+
+[node name="Players" type="Node" parent="." unique_id=1556251781]

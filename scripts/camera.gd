@@ -1,10 +1,10 @@
 extends Camera2D
 
-var target: PlayerShip
+var _target: PlayerShip
 @export var target_size := 150.0
 
 func set_target(ship):
-	target = ship
+	_target = ship
 	var sprite = ship.get_node("Sprite2D")
 	var size = sprite.texture.get_size() * sprite.scale
 	var max_dimension = max(size.x, size.y)
@@ -13,7 +13,10 @@ func set_target(ship):
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if target:
-		global_position = target.global_position
-		global_rotation = target.global_rotation
+func _process(delta: float) -> void:		
+	if _target:
+		global_position = global_position.lerp(
+			_target.global_position,
+			5.0 * delta
+		)
+		global_rotation = _target.global_rotation
