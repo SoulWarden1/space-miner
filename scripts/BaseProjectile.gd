@@ -5,6 +5,7 @@ class_name BaseProjectile
 @export var damage := 10
 @export var lifetime := 3.0
 @export var mass := 0.2
+var shooter_peer_id: int = -1
 
 var direction := Vector2.UP
 
@@ -18,7 +19,7 @@ func _physics_process(delta):
 func destroy():
 	queue_free()
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:		
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 		

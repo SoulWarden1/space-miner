@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dxxpbovr85uj1" path="res://scenes/asteroids/PlainAsteroid.tscn" id="2_qbsmt"]
 [ext_resource type="Script" uid="uid://b724o18jfqjh8" path="res://scripts/GameManager.gd" id="3_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://1wphs1b0kyqk" path="res://scenes/ships/player_ships/FirstShip.tscn" id="3_s0nni"]
+[ext_resource type="Script" uid="uid://btv6ubbmi0lgi" path="res://scripts/projectile_manager.gd" id="4_s0nni"]
 
 [node name="Game" type="Node2D" unique_id=1429756595]
 
@@ -40,6 +41,11 @@ unique_name_in_owner = true
 script = ExtResource("3_cpr0p")
 player_ship_scene = ExtResource("3_s0nni")
 
+[node name="ProjectileManager" type="Node" parent="." unique_id=1591668302]
+script = ExtResource("4_s0nni")
+
+[node name="AsteroidManager" type="Node" parent="." unique_id=820966773]
+
 [node name="Players" type="Node" parent="." unique_id=1556251781]
 
 [node name="Asteroids" type="Node" parent="." unique_id=563474928]
@@ -64,6 +70,16 @@ max_contacts_reported = 0
 position = Vector2(515, -122)
 max_contacts_reported = 0
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2132111596]
+[node name="PlayerMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2132111596]
 _spawnable_scenes = PackedStringArray("uid://c0d02yayvmpeg")
 spawn_path = NodePath("../Players")
+
+[node name="ProjectileMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1429588615]
+_spawnable_scenes = PackedStringArray("uid://bjr5ikpiudlbu")
+spawn_path = NodePath("../Projectiles")
+
+[node name="AsteroidMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=580524711]
+_spawnable_scenes = PackedStringArray("uid://cwot6s3hfo3ls")
+spawn_path = NodePath("../Asteroids")
+
+[node name="Projectiles" type="Node" parent="." unique_id=1705872626]

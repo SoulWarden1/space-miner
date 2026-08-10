@@ -3,7 +3,7 @@ extends Node
 @export var player_ship_scene: PackedScene
 
 @onready var players: Node = $"../Players"
-@onready var spawner: MultiplayerSpawner = $"../MultiplayerSpawner"
+@onready var player_spawner: MultiplayerSpawner = $"../PlayerMultiplayerSpawner"
 @onready var camera: Camera2D = $"../Camera2D"
 
 
@@ -11,7 +11,7 @@ func _ready():
 	NetworkManager.player_connected.connect(_on_peer_connected)
 	NetworkManager.player_disconnected.connect(_on_peer_disconnected)
 
-	spawner.spawn_function = _spawn_player
+	player_spawner.spawn_function = _spawn_player
 
 	print("Has peer: ", multiplayer.has_multiplayer_peer())
 	print("Is server: ", multiplayer.is_server())
@@ -47,7 +47,7 @@ func spawn_player(peer_id: int):
 
 	print("SERVER spawning ", peer_id)
 
-	var result = spawner.spawn(peer_id)
+	var result = player_spawner.spawn(peer_id)
 
 	print("Spawner returned: ", result)
 

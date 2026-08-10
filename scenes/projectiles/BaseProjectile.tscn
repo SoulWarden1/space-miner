@@ -2,8 +2,19 @@
 
 [ext_resource type="Script" uid="uid://cmmd1oauqhugu" path="res://scripts/BaseProjectile.gd" id="1_8thbs"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8thbs"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Projectile" type="Area2D" unique_id=1892110915]
 z_index = 1
 script = ExtResource("1_8thbs")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=184463154]
+replication_config = SubResource("SceneReplicationConfig_8thbs")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

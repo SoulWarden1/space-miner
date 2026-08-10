@@ -2,8 +2,25 @@
 
 [ext_resource type="Script" uid="uid://biow6sco48v5m" path="res://scripts/BaseAsteroid.gd" id="1_pgk3p"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pgk3p"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:linear_velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:angular_velocity")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [node name="BaseAsteroid" type="RigidBody2D" unique_id=1210074526 groups=["Asteroids"]]
 mass = 100.0
 gravity_scale = 0.0
 max_contacts_reported = 5
 script = ExtResource("1_pgk3p")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=298324833]
+replication_config = SubResource("SceneReplicationConfig_pgk3p")
