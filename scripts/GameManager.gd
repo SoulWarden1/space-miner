@@ -46,17 +46,24 @@ func spawn_player(peer_id: int):
 		return
 
 	print("SERVER spawning ", peer_id)
-
-	var result = player_spawner.spawn(peer_id)
+	
+	var data = {
+		"peer_id": peer_id,
+		"player_ship_scene_path": player_ship_scene.resource_path
+	}
+	
+	var result = player_spawner.spawn(data)
 
 	print("Spawner returned: ", result)
 
 
-func _spawn_player(peer_id: int) -> Node:
+func _spawn_player(data: Dictionary) -> Node:
+	var peer_id = data["peer_id"]
+	var scene = load(data["player_ship_scene_path"])
 	print("_spawn_player on local peer ", multiplayer.get_unique_id())
-	print("Creating player for peer ", peer_id)
+	print("Creating player for peer ", data["peer_id"])
 
-	var player = player_ship_scene.instantiate()
+	var player = scene.instantiate()
 
 	player.name = str(peer_id)
 	player.set_multiplayer_authority(peer_id)
