@@ -5,6 +5,8 @@ extends Node
 @onready var players: Node = $"../Players"
 @onready var player_spawner: MultiplayerSpawner = $"../PlayerMultiplayerSpawner"
 @onready var camera: Camera2D = $"../Camera2D"
+@onready var hud: Node = $"../HUD"
+var local_player: BaseShip
 
 
 func _ready():
@@ -74,8 +76,13 @@ func _spawn_player(data: Dictionary) -> Node:
 
 	if peer_id == multiplayer.get_unique_id():
 		camera.set_target(player)
+		set_local_player(player)
+
 
 	return player
+
+func set_local_player(player: BaseShip) -> void:
+	local_player = player
 
 func generate_asteroids():
 	if not multiplayer.is_server():

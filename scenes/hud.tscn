@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://f38icr86hdts"]
+
+[ext_resource type="Script" uid="uid://lunc7kddspp3" path="res://scripts/hud.gd" id="1_ahhtf"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1802522573]
+script = ExtResource("1_ahhtf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=933692621]
+offset_right = 368.0
+offset_bottom = 66.0
+theme_override_constants/separation = 10
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=1311081599]
+layout_mode = 2
+size_flags_vertical = 3
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="VBoxContainer/HealthBar" unique_id=668221644]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -11.5
+offset_right = 14.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+
+[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer" unique_id=818537599]
+layout_mode = 2
+size_flags_vertical = 3
+show_percentage = false
+
+[node name="ShieldLabel" type="Label" parent="VBoxContainer/ShieldBar" unique_id=1040399426]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -11.5
+offset_right = 31.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"

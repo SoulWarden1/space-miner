@@ -39,7 +39,7 @@ func take_damage(amount: int) -> void:
 
 	sync_health_state.rpc(
 		health,
-		shield.shield if shield else 0
+		shield.shield if shield else 0.0
 	)
 
 	if health <= 0:
@@ -58,18 +58,17 @@ func heal(amount: int) -> void:
 
 	sync_health_state.rpc(
 		health,
-		shield.shield if shield else 0
+		shield.shield if shield else 0.0
 	)
 
 
 func shield_regenerated(
-	current_shield,
-	maximum_shield
+	current_shield: float,
+	maximum_shield: float
 ):
 	if not multiplayer.is_server():
 		return
-		
-	print("Shield regenerated. Current shield: ", current_shield)
+
 	sync_health_state.rpc(
 		health,
 		current_shield
@@ -79,7 +78,7 @@ func shield_regenerated(
 @rpc("any_peer", "call_local", "reliable")
 func sync_health_state(
 	new_health: int,
-	new_shield: int
+	new_shield: float
 ) -> void:
 	if multiplayer.get_remote_sender_id() != 1 and not multiplayer.is_server():
 		return
@@ -96,8 +95,8 @@ func emit_health_state() -> void:
 	health_changed.emit(
 		health,
 		max_health,
-		shield.shield if shield else 0,
-		shield.max_shield if shield else 0
+		shield.shield if shield else 0.0,
+		shield.max_shield if shield else 0.0
 	)
 
 

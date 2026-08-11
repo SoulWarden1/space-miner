@@ -56,7 +56,7 @@ func _on_peer_connected(peer_id: int):
 func _on_peer_disconnected(peer_id: int):
 	print("NETWORK MANAGER: peer disconnected ", peer_id)
 	player_disconnected.emit(peer_id)
-	
+
 func _on_connected_to_server() -> void:
 	print("CONNECTED TO SERVER")
 	print("My peer ID: ", multiplayer.get_unique_id())
@@ -70,4 +70,4 @@ func _on_connection_failed() -> void:
 
 func _on_server_disconnected() -> void:
 	print("SERVER DISCONNECTED")
-	get_tree().change_scene_to_file("res://scenes/Game.tscn")
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

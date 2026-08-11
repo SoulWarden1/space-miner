@@ -6,9 +6,9 @@ signal shield_updated(current_shield, max_shield)
 @onready var cooldown: Timer = $Cooldown
 
 ## The time before the shield starts to recharge
-@export var shield_cooldown_time: float = 1.0
+@export var shield_cooldown_time: float = 3.0
 ## The amount of shield regenerated per second
-@export var shield_regenerate_rate: float = 10.0
+@export var shield_regenerate_rate: float = 5.0
 ## The maximum amount of shield
 @export var max_shield: float = 100.0
 
@@ -43,18 +43,12 @@ func absorb_damage(amount: int) -> int:
 
 
 func _on_cooldown_timeout() -> void:
-	print("Shield cooldown finished")
 	is_cooling_down = false
 
 
 func _process(delta: float) -> void:
 	if not multiplayer.is_server():
 		return
-
-	print(
-		"shield=", shield,
-		" cooling=", is_cooling_down
-	)
 
 	if not is_cooling_down and shield < max_shield:
 		shield += shield_regenerate_rate * delta

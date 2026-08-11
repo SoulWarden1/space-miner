@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c11tws0ep0dc7"]
 
 [ext_resource type="Script" uid="uid://cq0mc6po132xa" path="res://scripts/camera.gd" id="1_78awf"]
+[ext_resource type="PackedScene" uid="uid://f38icr86hdts" path="res://scenes/hud.tscn" id="2_aug50"]
 [ext_resource type="Script" uid="uid://b724o18jfqjh8" path="res://scripts/GameManager.gd" id="3_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://cqwrm0aahl44j" path="res://scenes/ships/player_ships/second_ship.tscn" id="3_s0nni"]
 [ext_resource type="Script" uid="uid://btv6ubbmi0lgi" path="res://scripts/projectile_manager.gd" id="4_s0nni"]
@@ -12,29 +13,7 @@
 ignore_rotation = false
 script = ExtResource("1_78awf")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=865998879]
-
-[node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=1492984364]
-offset_left = 11.0
-offset_top = 10.0
-offset_right = 237.0
-offset_bottom = 37.0
-value = 100.0
-rounded = true
-show_percentage = false
-
-[node name="HealthLabel" type="Label" parent="HUD" unique_id=1247981220]
-offset_left = 107.0
-offset_top = 11.0
-offset_right = 147.0
-offset_bottom = 34.0
-text = "100"
-
-[node name="ShieldBar" type="ProgressBar" parent="HUD" unique_id=2057616895]
-offset_left = 11.0
-offset_top = 41.0
-offset_right = 238.0
-offset_bottom = 68.0
+[node name="HUD" parent="." unique_id=1802522573 instance=ExtResource("2_aug50")]
 
 [node name="GameManager" type="Node" parent="." unique_id=188181057]
 unique_name_in_owner = true

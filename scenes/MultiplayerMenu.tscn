@@ -15,26 +15,44 @@ grow_vertical = 2
 script = ExtResource("1_nlcmr")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2112756444]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.1728327, 0.17283267, 0.17283267, 1)
 
 [node name="Label" type="Label" parent="." unique_id=362796106]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 64.0
-offset_right = 719.0
-offset_bottom = 131.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -220.0
+offset_right = 144.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Multiplayer"
 label_settings = SubResource("LabelSettings_bj41o")
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1261994178]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 200.0
-offset_right = 768.0
-offset_bottom = 432.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -92.0
+offset_right = 384.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HostButton" type="Button" parent="VBoxContainer" unique_id=1069722725]
 layout_mode = 2
