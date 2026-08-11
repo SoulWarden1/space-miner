@@ -10,29 +10,32 @@ var local_player: BaseShip
 
 
 func _ready():
+	print(
+		"GAME READY. Peer: ",
+		multiplayer.get_unique_id(),
+		" Server: ",
+		multiplayer.is_server()
+	)
+
 	NetworkManager.player_connected.connect(_on_peer_connected)
 	NetworkManager.player_disconnected.connect(_on_peer_disconnected)
 
 	player_spawner.spawn_function = _spawn_player
 
-	print("Has peer: ", multiplayer.has_multiplayer_peer())
-	print("Is server: ", multiplayer.is_server())
-	print("Unique ID: ", multiplayer.get_unique_id())
-
-	if multiplayer.has_multiplayer_peer() and multiplayer.is_server():
+	if multiplayer.is_server():
 		print("Scheduling host spawn")
 		spawn_player.call_deferred(multiplayer.get_unique_id())
 
-
-	if multiplayer.is_server():
 		call_deferred("generate_asteroids")
+	else:
+		print("About to send client_ready RPC")
+		print("GameManager path: ", get_path())
+		client_ready.rpc_id(1)
+		print("client_ready RPC requested")
 
 
 func _on_peer_connected(peer_id: int):
 	print("Player connected: ", peer_id)
-
-	if multiplayer.is_server():
-		spawn_player(peer_id)
 
 
 func _on_peer_disconnected(peer_id: int):
@@ -45,6 +48,18 @@ func _on_peer_disconnected(peer_id: int):
 
 	if player:
 		player.queue_free()
+
+@rpc("any_peer", "call_remote", "reliable")
+func client_ready():
+	print("SERVER: client_ready received")
+
+	if not multiplayer.is_server():
+		return
+
+	var peer_id = multiplayer.get_remote_sender_id()
+	print("SERVER: ready peer = ", peer_id)
+
+	spawn_player(peer_id)
 
 
 func spawn_player(peer_id: int):
@@ -106,7 +121,7 @@ func generate_asteroids():
 				continue
 
 		asteroid_manager.spawn_asteroid(
-			load("res://scenes/Asteroids/PlainAsteroid.tscn"),
+			load("res://scenes/asteroids/PlainAsteroid.tscn"),
 			position
 		)
 

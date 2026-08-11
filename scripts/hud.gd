@@ -6,7 +6,6 @@ extends CanvasLayer
 @onready var shield_label: Label = $VBoxContainer/ShieldBar/ShieldLabel
 
 func _ready() -> void:
-	print(health_bar, health_label, shield_bar, shield_label)
 	call_deferred("_setup_player")
 
 ## Attempts to find the local player and connect to its health_changed signal.

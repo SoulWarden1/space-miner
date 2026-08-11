@@ -19,10 +19,13 @@ func _physics_process(delta):
 func destroy():
 	queue_free()
 
-func _on_body_entered(body: Node2D) -> void:		
+func _on_body_entered(body: Node2D) -> void:
+	if not multiplayer.is_server():
+		return
+
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
-		
+
 	if body is RigidBody2D:
 		var impulse = direction * speed * mass
 		body.apply_impulse(impulse)
