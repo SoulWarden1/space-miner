@@ -2,12 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://cwot6s3hfo3ls" path="res://scenes/asteroids/BaseAsteroid.tscn" id="1_7ymqd"]
 [ext_resource type="Texture2D" uid="uid://dliogcuj22cai" path="res://assets/Asteroid.png" id="2_7ymqd"]
+[ext_resource type="PackedScene" uid="uid://ddno2aph6y5ca" path="res://scenes/asteroids/TestOre.tscn" id="2_miemc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kiw3p"]
 radius = 70.0
 height = 232.0
 
 [node name="PlainAsteroid" unique_id=1210074526 instance=ExtResource("1_7ymqd")]
+ore_scene = ExtResource("2_miemc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1140225401]
 texture = ExtResource("2_7ymqd")

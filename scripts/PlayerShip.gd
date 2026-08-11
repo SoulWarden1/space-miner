@@ -4,6 +4,8 @@ class_name PlayerShip
 @export var thrust := 400.0
 @export var torque := 10000.0
 @export var max_speed := 500.0
+var inventory := {}
+
 
 func get_input() -> Vector2:
 	var vertical = Input.get_axis("forward", "backward")
@@ -13,17 +15,17 @@ func get_input() -> Vector2:
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
-	
+
 	handle_movement()
 	handle_rotation()
-	
+
 	if Input.is_action_pressed("shoot"):
 		for turret in get_tree().get_nodes_in_group("Weapons"):
 			turret.fire()
 
 func handle_movement() -> void:
 	var direction = get_input()
-	
+
 	if direction.length() != 0:
 		apply_central_force(direction.rotated(rotation) * thrust)
 
@@ -36,7 +38,26 @@ func handle_rotation() -> void:
 	apply_torque(
 		rotate_input * torque
 	)
-	
+
 func _integrate_forces(state):
 	if linear_velocity.length() > max_speed:
 		linear_velocity = linear_velocity.normalized() * max_speed
+
+func collect_ore(ore_type: OreTypes.Type, amount: int) -> void:
+	if not multiplayer.is_server():
+		return
+
+	inventory[ore_type] = inventory.get(ore_type, 0) + amount
+	print(inventory)
+
+	sync_inventory.rpc(
+		ore_type,
+		inventory[ore_type]
+	)
+
+@rpc("any_peer", "call_remote", "reliable")
+func sync_inventory(ore_type: OreTypes.Type, amount: int):
+	if multiplayer.get_remote_sender_id() != 1 and not multiplayer.is_server():
+		return
+
+	inventory[ore_type] = amount

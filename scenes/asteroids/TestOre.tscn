@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ddno2aph6y5ca"]
+
+[ext_resource type="PackedScene" uid="uid://csrmfiw575e17" path="res://scenes/asteroids/BaseOre.tscn" id="1_ekiug"]
+[ext_resource type="Texture2D" uid="uid://brg4r0462gwm6" path="res://assets/Ore.png" id="2_toitd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rw38"]
+radius = 41.01219
+
+[node name="BaseOre" unique_id=1945219539 instance=ExtResource("1_ekiug")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=616807138]
+position = Vector2(0, 11)
+texture = ExtResource("2_toitd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=1826474316]
+shape = SubResource("CircleShape2D_6rw38")

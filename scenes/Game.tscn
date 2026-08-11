@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cqwrm0aahl44j" path="res://scenes/ships/player_ships/second_ship.tscn" id="3_s0nni"]
 [ext_resource type="Script" uid="uid://btv6ubbmi0lgi" path="res://scripts/projectile_manager.gd" id="4_s0nni"]
 [ext_resource type="Script" uid="uid://bmrarjv5dmymk" path="res://scripts/asteroid_manager.gd" id="5_s0nni"]
+[ext_resource type="Script" uid="uid://cprtxmbtwuwk3" path="res://scripts/ore_manager.gd" id="7_kiw3p"]
 
 [node name="Game" type="Node2D" unique_id=1429756595]
 
@@ -26,6 +27,9 @@ script = ExtResource("4_s0nni")
 [node name="AsteroidManager" type="Node" parent="." unique_id=820966773]
 script = ExtResource("5_s0nni")
 
+[node name="OreManager" type="Node" parent="." unique_id=883307327]
+script = ExtResource("7_kiw3p")
+
 [node name="PlayerMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2132111596]
 _spawnable_scenes = PackedStringArray("uid://c0d02yayvmpeg")
 spawn_path = NodePath("../Players")
@@ -38,8 +42,14 @@ spawn_path = NodePath("../Projectiles")
 _spawnable_scenes = PackedStringArray("uid://cwot6s3hfo3ls")
 spawn_path = NodePath("../Asteroids")
 
+[node name="OreMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1600939552]
+_spawnable_scenes = PackedStringArray("uid://csrmfiw575e17")
+spawn_path = NodePath("../Ores")
+
 [node name="Asteroids" type="Node" parent="." unique_id=563474928]
 
 [node name="Projectiles" type="Node" parent="." unique_id=1705872626]
 
 [node name="Players" type="Node" parent="." unique_id=1556251781]
+
+[node name="Ores" type="Node" parent="." unique_id=102557756]

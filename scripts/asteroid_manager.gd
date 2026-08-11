@@ -23,5 +23,6 @@ func _spawn_asteroid(data: Dictionary) -> Node:
 	var asteroid = scene.instantiate()
 
 	asteroid.global_position = data["position"]
+	asteroid.set_multiplayer_authority(1, true)
 
 	return asteroid
