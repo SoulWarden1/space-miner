@@ -1,27 +1,11 @@
 [gd_scene format=3 uid="uid://cwot6s3hfo3ls"]
 
-[ext_resource type="Script" uid="uid://biow6sco48v5m" path="res://scripts/BaseAsteroid.gd" id="1_pgk3p"]
+[ext_resource type="PackedScene" uid="uid://dvkwvvqarid3b" path="res://scenes/SpaceBody.tscn" id="1_pgk3p"]
+[ext_resource type="Script" uid="uid://biow6sco48v5m" path="res://scripts/BaseAsteroid.gd" id="2_36cwo"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pgk3p"]
-properties/0/path = NodePath(".:rotation")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:linear_velocity")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:angular_velocity")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath(".:position")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-
-[node name="BaseAsteroid" type="RigidBody2D" unique_id=1210074526 groups=["Asteroids"]]
-collision_mask = 3
+[node name="BaseAsteroid" unique_id=2096854138 groups=["Asteroids"] instance=ExtResource("1_pgk3p")]
 mass = 100.0
-gravity_scale = 0.0
-max_contacts_reported = 5
-script = ExtResource("1_pgk3p")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=298324833]
-replication_config = SubResource("SceneReplicationConfig_pgk3p")
+script = ExtResource("2_36cwo")
+ore_scene = null
+ore_min_drop_amount = 1
+ore_max_drop_amount = 3

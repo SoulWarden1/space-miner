@@ -3,5 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://dvkwvvqarid3b" path="res://scenes/SpaceBody.tscn" id="1_qlxi4"]
 [ext_resource type="Script" uid="uid://dwku4u1v4pm0y" path="res://scripts/BaseShip.gd" id="2_4gpj4"]
 
-[node name="BaseShip" unique_id=2096854138 instance=ExtResource("1_qlxi4")]
+[node name="BaseShip" unique_id=2096854138 groups=["Ships"] instance=ExtResource("1_qlxi4")]
 script = ExtResource("2_4gpj4")

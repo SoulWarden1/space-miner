@@ -4,18 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://dliogcuj22cai" path="res://assets/Asteroid.png" id="2_7ymqd"]
 [ext_resource type="PackedScene" uid="uid://ddno2aph6y5ca" path="res://scenes/asteroids/TestOre.tscn" id="2_miemc"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kiw3p"]
-radius = 70.0
-height = 232.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rw38"]
+radius = 73.00407
+height = 237.95914
 
-[node name="PlainAsteroid" unique_id=1210074526 instance=ExtResource("1_7ymqd")]
+[node name="PlainAsteroid" unique_id=2096854138 instance=ExtResource("1_7ymqd")]
 ore_scene = ExtResource("2_miemc")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1140225401]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1810636169]
 texture = ExtResource("2_7ymqd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=1503089914]
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_kiw3p")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=325024829]
+rotation = 1.5658368
+shape = SubResource("CapsuleShape2D_6rw38")
