@@ -9,6 +9,7 @@ radius = 73.00407
 height = 237.95914
 
 [node name="PlainAsteroid" unique_id=2096854138 instance=ExtResource("1_7ymqd")]
+collision_mask = 3
 ore_scene = ExtResource("2_miemc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1810636169]

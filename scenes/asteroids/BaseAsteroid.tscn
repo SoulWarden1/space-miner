@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://biow6sco48v5m" path="res://scripts/BaseAsteroid.gd" id="2_36cwo"]
 
 [node name="BaseAsteroid" unique_id=2096854138 groups=["Asteroids"] instance=ExtResource("1_pgk3p")]
+collision_mask = 3
 mass = 100.0
 script = ExtResource("2_36cwo")
 ore_scene = null
