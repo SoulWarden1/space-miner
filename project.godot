@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="space miner"
+config/name="space_miner"
 run/main_scene="uid://bgoxudku6eh02"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://assets/icon.svg"
@@ -94,6 +94,7 @@ shoot={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
 
 [steam]
 

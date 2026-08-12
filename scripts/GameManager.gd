@@ -116,7 +116,7 @@ func generate_asteroids():
 		)
 
 		for asteroid in asteroids.get_children():
-			if asteroid.global_position.distance_to(position) < 500:
+			if asteroid.global_position.distance_to(position) < 800:
 				print("Too close to existing asteroid, skipping spawn")
 				continue
 

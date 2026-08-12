@@ -40,6 +40,7 @@ func handle_rotation() -> void:
 	)
 
 func _integrate_forces(state):
+	# Limit the speed of the ship to max_speed
 	if linear_velocity.length() > max_speed:
 		linear_velocity = linear_velocity.normalized() * max_speed
 
