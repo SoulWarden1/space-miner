@@ -38,8 +38,8 @@ func _on_steam_lobby_created(lobby_id: int) -> void:
 
 
 func _on_join_button_pressed() -> void:
-	# var error = NetworkManager.join_enet_game("127.0.0.1")
-	var error = NetworkManager.join_enet_game("192.168.1.208")
+	var error = NetworkManager.join_enet_game("127.0.0.1")
+	# var error = NetworkManager.join_enet_game("192.168.1.208")
 
 	if error != OK:
 		print("Could not start connection")

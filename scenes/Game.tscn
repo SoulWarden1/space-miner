@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cq0mc6po132xa" path="res://scripts/camera.gd" id="1_78awf"]
 [ext_resource type="PackedScene" uid="uid://f38icr86hdts" path="res://scenes/hud.tscn" id="2_aug50"]
 [ext_resource type="Script" uid="uid://b724o18jfqjh8" path="res://scripts/GameManager.gd" id="3_cpr0p"]
-[ext_resource type="PackedScene" uid="uid://cqwrm0aahl44j" path="res://scenes/ships/player_ships/second_ship.tscn" id="3_s0nni"]
+[ext_resource type="PackedScene" uid="uid://bjh2xg7dan22n" path="res://scenes/ships/player_ships/MediumShip.tscn" id="4_kiw3p"]
 [ext_resource type="Script" uid="uid://btv6ubbmi0lgi" path="res://scripts/projectile_manager.gd" id="4_s0nni"]
 [ext_resource type="Script" uid="uid://bmrarjv5dmymk" path="res://scripts/asteroid_manager.gd" id="5_s0nni"]
 [ext_resource type="Script" uid="uid://cprtxmbtwuwk3" path="res://scripts/ore_manager.gd" id="7_kiw3p"]
@@ -19,7 +19,7 @@ script = ExtResource("1_78awf")
 [node name="GameManager" type="Node" parent="." unique_id=188181057]
 unique_name_in_owner = true
 script = ExtResource("3_cpr0p")
-player_ship_scene = ExtResource("3_s0nni")
+player_ship_scene = ExtResource("4_kiw3p")
 
 [node name="ProjectileManager" type="Node" parent="." unique_id=1591668302]
 script = ExtResource("4_s0nni")
@@ -31,7 +31,6 @@ script = ExtResource("5_s0nni")
 script = ExtResource("7_kiw3p")
 
 [node name="PlayerMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2132111596]
-_spawnable_scenes = PackedStringArray("uid://c0d02yayvmpeg")
 spawn_path = NodePath("../Players")
 
 [node name="ProjectileMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1429588615]

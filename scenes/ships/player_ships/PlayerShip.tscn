@@ -1,12 +1,11 @@
-[gd_scene format=3 uid="uid://c0d02yayvmpeg"]
+[gd_scene format=3 uid="uid://dvtmjeb4me8n8"]
 
-[ext_resource type="PackedScene" uid="uid://b3ratxk7rjeef" path="res://scenes/BaseShip.tscn" id="1_5m1dw"]
+[ext_resource type="PackedScene" uid="uid://dgx6b5sxchpi7" path="res://scenes/ships/BaseShip.tscn" id="1_5m1dw"]
 [ext_resource type="Script" uid="uid://b8uw0nneo6cb3" path="res://scripts/PlayerShip.gd" id="2_jfo76"]
 
-[node name="Spaceship" unique_id=512002788 groups=["PlayerShip"] instance=ExtResource("1_5m1dw")]
+[node name="PlayerShip" unique_id=2096854138 instance=ExtResource("1_5m1dw")]
 collision_layer = 2
 collision_mask = 3
-mass = 10.0
 script = ExtResource("2_jfo76")
 thrust = 400.0
 torque = 10000.0

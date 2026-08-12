@@ -1,33 +1,19 @@
-extends RigidBody2D
+extends SpaceBody
+class_name BaseAsteroid
 
-@export var health := 100
-@export var collision_damage := 20
 @export var ore_scene: PackedScene
 @export var ore_min_drop_amount := 1
 @export var ore_max_drop_amount := 3
 
 func _ready() -> void:
+	super._ready()
 	if multiplayer.has_multiplayer_peer() and not multiplayer.is_server():
 		freeze = true
 
-func take_damage(amount: int) -> void:
-	if not multiplayer.is_server():
-		return
-
-	health -= amount
-
-	if health <= 0:
-		destroy()
-
-func get_collision_damage() -> int:
-	return collision_damage
 
 func destroy() -> void:
-	if not multiplayer.is_server():
-		return
-
+	super.destroy()
 	drop_ores()
-	queue_free()
 
 func drop_ores() -> void:
 	if ore_scene == null:
@@ -53,3 +39,5 @@ func drop_ores() -> void:
 			ore_scene,
 			global_position + offset
 		)
+
+

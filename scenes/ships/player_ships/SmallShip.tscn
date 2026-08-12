@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b6flk0ri88pop"]
+
+[ext_resource type="PackedScene" uid="uid://dvtmjeb4me8n8" path="res://scenes/ships/player_ships/PlayerShip.tscn" id="1_gdqlx"]
+[ext_resource type="Texture2D" uid="uid://dnohhh4ifgd6h" path="res://assets/icon.svg" id="2_al11u"]
+[ext_resource type="PackedScene" uid="uid://r3gievvebdyk" path="res://scenes/ships/weapons/turrets/OneBarrelTurret.tscn" id="3_68v3m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rw38"]
+size = Vector2(128, 128)
+
+[node name="SpaceBody" unique_id=2096854138 instance=ExtResource("1_gdqlx")]
+mass = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=1791742601]
+texture = ExtResource("2_al11u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=276444643]
+shape = SubResource("RectangleShape2D_6rw38")
+
+[node name="OneBarrelTurret" parent="." index="3" unique_id=1228362028 instance=ExtResource("3_68v3m")]
+position = Vector2(0, -60)
