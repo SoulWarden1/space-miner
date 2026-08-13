@@ -8,6 +8,9 @@ class_name BaseWeapon
 @export var fire_rate := 1.0
 var muzzles: Array[Marker2D]
 
+@onready var weapon_sound_player = $WeaponSoundPlayer
+@export var weapon_sound: AudioStream
+
 var can_fire := true
 
 func _ready() -> void:
@@ -15,6 +18,9 @@ func _ready() -> void:
 	for child in get_children():
 		if child is Marker2D:
 			muzzles.append(child)
-	
+
+	if weapon_sound != null:
+		weapon_sound_player.stream = weapon_sound
+
 func fire():
 	push_error("Weapon does not have a fire method implemented!")

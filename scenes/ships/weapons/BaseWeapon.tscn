@@ -4,3 +4,6 @@
 
 [node name="BaseWeapon" type="Node2D" unique_id=1228362028 groups=["Weapons"]]
 script = ExtResource("1_inbrb")
+
+[node name="WeaponSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2025374827]
+bus = &"Weapons"

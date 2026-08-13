@@ -74,6 +74,21 @@ text = "Join Steam Game"
 layout_mode = 2
 text = "Back"
 
+[node name="ServerPopup" type="AcceptDialog" parent="." unique_id=1548923365]
+oversampling_override = 1.0
+title = "Enter IP Address"
+position = Vector2i(0, 36)
+size = Vector2i(300, 100)
+ok_button_text = "Enter"
+
+[node name="ServerIPInput" type="LineEdit" parent="ServerPopup" unique_id=1762143764]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 292.0
+offset_bottom = 51.0
+text = "127.0.0.1"
+placeholder_text = "Enter IP Address..."
+
 [connection signal="pressed" from="VBoxContainer/HostServerButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HostSteamButton" to="." method="_on_host_steam_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

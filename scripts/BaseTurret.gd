@@ -72,3 +72,5 @@ func _fire_from_muzzle(muzzle: Marker2D):
 		global_rotation,
 		get_multiplayer_authority()
 	)
+
+	weapon_sound_player.play()
