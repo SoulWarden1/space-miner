@@ -78,7 +78,9 @@ func _on_server_popup_confirmed() -> void:
 	if regex.search(server_ip) != null:
 		error = NetworkManager.join_enet_game(server_ip)
 		isSteam = false
+		print("Valid IPv4 address: ", server_ip, " Attempting to join ENet game...")
 	elif server_ip.length() >= 15 and server_ip.is_valid_int():
+		print("Valid Steam Lobby ID: ", server_ip, " Attempting to join Steam game...")
 		isSteam = true
 		error = NetworkManager.join_steam_game(int(server_ip))
 	else:
@@ -88,11 +90,6 @@ func _on_server_popup_confirmed() -> void:
 	if error != OK:
 		print("Could not start connection")
 		return
-
-	if isSteam:
-		print("Joining Steam lobby...")
-	else:
-		print("Waiting for ENet connection...")
 
 
 func _on_join_steam_button_pressed() -> void:
@@ -108,11 +105,10 @@ func _on_join_steam_button_pressed() -> void:
 
 
 func _on_connected_to_server() -> void:
-	print("Connection successful, entering game")
-
-	get_tree().change_scene_to_file(
-		"res://scenes/Game.tscn"
-	)
+	if NetworkManager.network_type == NetworkManager.NetworkType.ENET:
+		get_tree().change_scene_to_file(
+			"res://scenes/Game.tscn"
+		)
 
 
 func _on_connection_failed() -> void:

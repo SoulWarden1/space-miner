@@ -19,19 +19,59 @@ func _ready():
 
 	NetworkManager.player_connected.connect(_on_peer_connected)
 	NetworkManager.player_disconnected.connect(_on_peer_disconnected)
+	NetworkManager.connected_to_server.connect(_on_connected_to_server)
 
 	player_spawner.spawn_function = _spawn_player
 
-	if multiplayer.is_server():
+	# Game scene must exist BEFORE creating the SteamMultiplayerPeer.
+	if NetworkManager.network_type == NetworkManager.NetworkType.STEAM and NetworkManager.waiting_for_steam_connection:
+		print("Steam client scene ready")
+		call_deferred("_finish_steam_join")
+		return
+
+	# Server, either ENet or Steam.
+	if multiplayer.has_multiplayer_peer() and multiplayer.is_server():
 		print("Scheduling host spawn")
-		spawn_player.call_deferred(multiplayer.get_unique_id())
+
+		# Spawning the host
+		spawn_player.call_deferred(
+			multiplayer.get_unique_id()
+		)
 
 		call_deferred("generate_asteroids")
-	else:
-		print("About to send client_ready RPC")
-		print("GameManager path: ", get_path())
-		client_ready.rpc_id(1)
-		print("client_ready RPC requested")
+		return
+
+	# The ENet connection already exists by the time Game.tscn loads, so we can send the client_ready signal immediately.
+	if NetworkManager.network_type == NetworkManager.NetworkType.ENET:
+		print("ENet client game ready")
+		_send_client_ready.call_deferred()
+
+# Function to finish the Steam join process after the game scene is fully loaded
+func _finish_steam_join() -> void:
+	await get_tree().process_frame
+
+	var error = NetworkManager.finish_steam_connection()
+
+	if error != OK:
+		print("Failed to finish Steam connection: ", error)
+
+func _on_connected_to_server() -> void:
+	print(
+		"GameManager connected as peer ",
+		multiplayer.get_unique_id()
+	)
+
+	# Steam client's Game.tscn is already ready at this point.
+	if NetworkManager.network_type == NetworkManager.NetworkType.STEAM:
+		_send_client_ready()
+
+func _send_client_ready() -> void:
+	print(
+		"Sending client_ready from peer ",
+		multiplayer.get_unique_id()
+	)
+
+	client_ready.rpc_id(1)
 
 
 func _on_peer_connected(peer_id: int):
@@ -118,7 +158,7 @@ func generate_asteroids():
 		for asteroid in asteroids.get_children():
 			if asteroid.global_position.distance_to(position) < 800:
 				print("Too close to existing asteroid, skipping spawn")
-				continue
+				break
 
 		asteroid_manager.spawn_asteroid(
 			load("res://scenes/asteroids/PlainAsteroid.tscn"),

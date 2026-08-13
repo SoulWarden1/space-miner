@@ -9,6 +9,8 @@ signal steam_lobby_created(lobby_id: int)
 
 const PORT := 9999
 const MAX_CLIENTS := 4
+var pending_steam_host_id: int = 0
+var waiting_for_steam_connection := false
 
 enum NetworkType {
 	NONE,
@@ -221,30 +223,46 @@ func _on_lobby_joined(
 		return
 
 	var host_steam_id = Steam.getLobbyOwner(lobby_id)
-	var my_steam_id = Steam.getSteamID()
 
-	print("Host Steam ID: ", host_steam_id)
-	print("My Steam ID: ", my_steam_id)
-
-	# The host also "joins" its own lobby.
-	# Don't create a client connection to yourself.
-	if host_steam_id == my_steam_id:
-		print("I am the lobby host, skipping create_client")
+	# Host also receives lobby callbacks.
+	if host_steam_id == Steam.getSteamID():
 		return
+
+	pending_steam_host_id = host_steam_id
+	waiting_for_steam_connection = true
+
+	# Load the networked scene BEFORE connecting.
+	get_tree().change_scene_to_file(
+		"res://scenes/Game.tscn"
+	)
+
+func finish_steam_connection() -> Error:
+	if not waiting_for_steam_connection:
+		print("No pending Steam connection")
+		return ERR_INVALID_PARAMETER
+
+	if pending_steam_host_id == 0:
+		print("No pending Steam host ID")
+		return ERR_INVALID_PARAMETER
 
 	steam_peer = SteamMultiplayerPeer.new()
 
-	var error = steam_peer.create_client(host_steam_id)
-
-	print("create_client result: ", error)
+	var error = steam_peer.create_client(
+		pending_steam_host_id
+	)
 
 	if error != OK:
-		print("Failed to create Steam client")
-		return
+		print("Failed to create Steam client: ", error)
+		return error
 
 	multiplayer.multiplayer_peer = steam_peer
 
-	print("Waiting for Steam multiplayer connection...")
+	waiting_for_steam_connection = false
+	pending_steam_host_id = 0
+
+	print("Steam multiplayer connection started")
+
+	return OK
 
 func open_invite_menu() -> void:
 	if steam_lobby_id == 0:
