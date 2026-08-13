@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dc2r0j12jy08j"]
+
+[ext_resource type="Script" uid="uid://b6kncn2lamq8q" path="res://scripts/dock.gd" id="1_vilms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rw38"]
+
+[node name="Dock" type="Area2D" unique_id=393663935]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vilms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=715605876]
+shape = SubResource("RectangleShape2D_6rw38")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

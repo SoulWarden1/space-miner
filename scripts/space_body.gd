@@ -13,6 +13,7 @@ signal health_changed(
 @export var collision_damage := 20
 var health: int
 var collision_cooldown := false
+@export var can_take_collision_damage := true
 
 @onready var shield: ShieldComponent = get_node_or_null(
 	"ShieldComponent"
@@ -117,6 +118,9 @@ func get_collision_damage() -> int:
 func _on_body_entered(body: Node) -> void:
 	print("Collision detected with: ", body.name)
 	if not multiplayer.is_server():
+		return
+
+	if not can_take_collision_damage:
 		return
 
 	if collision_cooldown:

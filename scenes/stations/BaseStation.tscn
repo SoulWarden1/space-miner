@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bi11fer7pv8yv"]
+
+[ext_resource type="PackedScene" uid="uid://dvkwvvqarid3b" path="res://scenes/SpaceBody.tscn" id="1_2q17r"]
+[ext_resource type="Script" uid="uid://ecg53fymsoea" path="res://scripts/base_station.gd" id="2_5jtws"]
+
+[node name="BaseStation" unique_id=2096854138 instance=ExtResource("1_2q17r")]
+script = ExtResource("2_5jtws")
