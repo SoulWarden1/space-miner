@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://btv6ubbmi0lgi" path="res://scripts/projectile_manager.gd" id="4_s0nni"]
 [ext_resource type="Script" uid="uid://bmrarjv5dmymk" path="res://scripts/asteroid_manager.gd" id="5_s0nni"]
 [ext_resource type="Script" uid="uid://cprtxmbtwuwk3" path="res://scripts/ore_manager.gd" id="7_kiw3p"]
+[ext_resource type="PackedScene" uid="uid://dtg2jphv8ah71" path="res://scenes/stations/first_station.tscn" id="8_400sg"]
 
 [node name="Game" type="Node2D" unique_id=1429756595]
 
@@ -52,3 +53,7 @@ spawn_path = NodePath("../Ores")
 [node name="Players" type="Node" parent="." unique_id=1556251781]
 
 [node name="Ores" type="Node" parent="." unique_id=102557756]
+
+[node name="FirstStation" parent="." unique_id=2096854138 instance=ExtResource("8_400sg")]
+position = Vector2(1115, 609)
+collision_damage = 20

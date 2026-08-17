@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://bi11fer7pv8yv"]
 
 [ext_resource type="PackedScene" uid="uid://dvkwvvqarid3b" path="res://scenes/SpaceBody.tscn" id="1_2q17r"]
-[ext_resource type="Script" uid="uid://ecg53fymsoea" path="res://scripts/base_station.gd" id="2_5jtws"]
+[ext_resource type="Script" uid="uid://4q7ix88jha8u" path="res://scripts/BaseStation.gd" id="2_5jtws"]
 
 [node name="BaseStation" unique_id=2096854138 instance=ExtResource("1_2q17r")]
+mass = 1000.0
 script = ExtResource("2_5jtws")
+max_health = 1000
+collision_damage = 0
+can_take_collision_damage = false
+
+[node name="Docks" type="Node2D" parent="." index="1" unique_id=1977066469]

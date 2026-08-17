@@ -7,6 +7,7 @@ extends Node
 @onready var camera: Camera2D = $"../Camera2D"
 @onready var hud: Node = $"../HUD"
 var local_player: BaseShip
+var station: BaseStation
 
 
 func _ready():
@@ -22,6 +23,13 @@ func _ready():
 	NetworkManager.connected_to_server.connect(_on_connected_to_server)
 
 	player_spawner.spawn_function = _spawn_player
+
+	# Find the space station
+	for child in get_tree().current_scene.get_children():
+		if child is BaseStation:
+			station = child
+			print("Found station: ", station.name)
+			break
 
 	# Game scene must exist BEFORE creating the SteamMultiplayerPeer.
 	if NetworkManager.network_type == NetworkManager.NetworkType.STEAM and NetworkManager.waiting_for_steam_connection:
@@ -108,9 +116,14 @@ func spawn_player(peer_id: int):
 
 	print("SERVER spawning ", peer_id)
 
+	var docks = station.get_docks()
+	var spawn_dock = docks[players.get_child_count()]
+	var spawn_position = spawn_dock.global_position
+
 	var data = {
 		"peer_id": peer_id,
-		"player_ship_scene_path": player_ship_scene.resource_path
+		"player_ship_scene_path": player_ship_scene.resource_path,
+		"spawn_position": spawn_position
 	}
 
 	var result = player_spawner.spawn(data)
@@ -128,11 +141,11 @@ func _spawn_player(data: Dictionary) -> Node:
 
 	player.name = str(peer_id)
 	player.set_multiplayer_authority(peer_id)
+	player.global_position = data["spawn_position"]
 
 	if peer_id == multiplayer.get_unique_id():
 		camera.set_target(player)
 		set_local_player(player)
-
 
 	return player
 
@@ -146,24 +159,32 @@ func generate_asteroids():
 	var asteroid_manager = get_tree().current_scene.get_node("AsteroidManager")
 
 	var asteroids = get_tree().current_scene.get_node("Asteroids")
+	var i = 0
 
-	while true:
+	while i < 30:
+		var to_skip = false
 		var asteroid_count = asteroids.get_child_count()
 
 		var position = Vector2(
-			randf_range(-2000, 2000),
-			randf_range(-2000, 2000)
+			randf_range(-2500, 2500),
+			randf_range(-2500, 2500)
 		)
 
 		for asteroid in asteroids.get_children():
-			if asteroid.global_position.distance_to(position) < 800:
+			if asteroid.global_position.distance_to(position) < 250:
 				print("Too close to existing asteroid, skipping spawn")
-				break
+				to_skip = true
+			elif asteroid.global_position.distance_to(station.global_position) < 600:
+				print("Too close to station, skipping spawn")
+				to_skip = true
 
-		asteroid_manager.spawn_asteroid(
-			load("res://scenes/asteroids/PlainAsteroid.tscn"),
-			position
-		)
+		if not to_skip:
+			asteroid_manager.spawn_asteroid(
+				load("res://scenes/asteroids/PlainAsteroid.tscn"),
+				position
+			)
 
 		if asteroid_count >= 20:
 			break
+
+		i += 1
