@@ -4,6 +4,9 @@ class_name BaseAsteroid
 @export var ore_scene: PackedScene
 @export var ore_min_drop_amount := 1
 @export var ore_max_drop_amount := 3
+@export var explosion_scene: PackedScene
+
+@onready var particles: GPUParticles2D = $GPUParticles2D
 
 func _ready() -> void:
 	super._ready()
@@ -14,6 +17,11 @@ func _ready() -> void:
 func destroy() -> void:
 	super.destroy()
 	drop_ores()
+
+	if multiplayer.is_server():
+		print("Spawning explosion")
+		spawn_explosion.rpc(global_position)
+
 
 func drop_ores() -> void:
 	if ore_scene == null:
@@ -39,5 +47,14 @@ func drop_ores() -> void:
 			ore_scene,
 			global_position + offset
 		)
+
+@rpc("authority", "call_local", "unreliable")
+func spawn_explosion(explosion_position: Vector2) -> void:
+	if explosion_scene == null:
+		return
+
+	var explosion = explosion_scene.instantiate()
+	explosion.global_position = explosion_position
+	get_tree().current_scene.add_child(explosion)
 
 

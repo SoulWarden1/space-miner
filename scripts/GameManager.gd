@@ -126,9 +126,7 @@ func spawn_player(peer_id: int):
 		"spawn_position": spawn_position
 	}
 
-	var result = player_spawner.spawn(data)
-
-	print("Spawner returned: ", result)
+	player_spawner.spawn(data)
 
 
 func _spawn_player(data: Dictionary) -> Node:

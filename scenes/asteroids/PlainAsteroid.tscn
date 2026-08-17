@@ -3,14 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://cwot6s3hfo3ls" path="res://scenes/asteroids/BaseAsteroid.tscn" id="1_7ymqd"]
 [ext_resource type="Texture2D" uid="uid://dliogcuj22cai" path="res://assets/Asteroid.png" id="2_7ymqd"]
 [ext_resource type="PackedScene" uid="uid://ddno2aph6y5ca" path="res://scenes/asteroids/TestOre.tscn" id="2_miemc"]
+[ext_resource type="PackedScene" uid="uid://bowm2iybn2qj" path="res://scenes/explosion.tscn" id="3_ukcbu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rw38"]
 radius = 73.00407
 height = 237.95914
 
 [node name="PlainAsteroid" unique_id=2096854138 instance=ExtResource("1_7ymqd")]
-collision_mask = 3
 ore_scene = ExtResource("2_miemc")
+explosion_scene = ExtResource("3_ukcbu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1810636169]
 texture = ExtResource("2_7ymqd")
