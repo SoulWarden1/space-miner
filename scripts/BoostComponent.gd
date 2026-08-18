@@ -3,7 +3,7 @@ extends BaseComponent
 signal boost_updated(boost_fuel, max_boost_fuel)
 
 ## What multiplier to apply to the ship thrust
-@export var boost_factor: float = 2.0
+@export var boost_factor: float = 4.0
 ## Boost fuel
 @export var max_boost_fuel: float = 400
 ## Time before boost_factor starts to refill

@@ -64,3 +64,7 @@ func sync_inventory(ore_type: OreTypes.Type, amount: int):
 		return
 
 	inventory[ore_type] = amount
+
+func dock():
+	print("Player ship docking")
+	pass

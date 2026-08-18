@@ -14,5 +14,8 @@ func get_docks() -> Array[Dock]:
 	return docks
 
 
-func player_docked(ship: PlayerShip) -> void:
-	print("Player docked: ", ship.name)
+func player_docked(dock: Dock, ship: PlayerShip) -> void:
+	print("Player ", ship.name, " docked to ", dock.name)
+
+	if ship.has_method("dock"):
+		ship.dock()
