@@ -10,14 +10,13 @@ signal health_changed(
 )
 
 @export var max_health: int = 100
+@export var armour: int = 0
 @export var collision_damage := 20
 var health: int
 var collision_cooldown := false
 @export var can_take_collision_damage := true
 
-@onready var shield: ShieldComponent = get_node_or_null(
-	"ShieldComponent"
-)
+@onready var shield: BaseComponent = get_node_or_null("ShieldComponent")
 
 func _ready():
 	health = max_health
@@ -35,7 +34,10 @@ func take_damage(amount: int) -> void:
 	if shield:
 		amount = shield.absorb_damage(amount)
 
-	health -= amount
+	if armour > 50:
+		push_error("Armour is greater than 50")
+
+	health -= amount * (1 - armour/100)
 	health = max(health, 0)
 
 	sync_health_state.rpc(

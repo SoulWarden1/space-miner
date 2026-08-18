@@ -1,5 +1,4 @@
-extends Node
-class_name ShieldComponent
+extends BaseComponent
 
 signal shield_updated(current_shield, max_shield)
 
@@ -43,6 +42,7 @@ func absorb_damage(amount: int) -> int:
 
 
 func _on_cooldown_timeout() -> void:
+	print("Shield cooldown finished")
 	is_cooling_down = false
 
 

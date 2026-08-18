@@ -1,11 +1,14 @@
-[gd_scene format=3 uid="uid://bpy8mrqsqcnhb"]
+[gd_scene format=3 uid="uid://lte0ma8ut0fb"]
 
 [ext_resource type="Script" uid="uid://dywil5q0fljv2" path="res://scripts/ShieldComponent.gd" id="1_l4q8w"]
+[ext_resource type="PackedScene" uid="uid://duuwogfuqsvrc" path="res://scenes/ships/components/BaseComponent.tscn" id="1_o8ub8"]
 
-[node name="ShieldComponent" type="Node" unique_id=53357698]
+[node name="ShieldComponent" unique_id=1973102539 instance=ExtResource("1_o8ub8")]
 script = ExtResource("1_l4q8w")
+shield_cooldown_time = 3.0
+shield_regenerate_rate = 5.0
+max_shield = 100.0
 
-[node name="Cooldown" type="Timer" parent="." unique_id=1360822041]
-one_shot = true
+[node name="Cooldown" type="Timer" parent="." index="0" unique_id=362554223]
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
