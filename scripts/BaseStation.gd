@@ -19,3 +19,13 @@ func player_docked(dock: Dock, ship: PlayerShip) -> void:
 
 	if ship.has_method("dock"):
 		ship.dock()
+
+func destroy() -> void:
+	super.destroy()
+
+	if multiplayer.is_server():
+		sync_destroy.rpc()
+
+@rpc("authority", "call_local", "reliable")
+func sync_destroy():
+	queue_free()

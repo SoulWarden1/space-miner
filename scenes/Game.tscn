@@ -57,4 +57,6 @@ spawn_path = NodePath("../Ores")
 [node name="FirstStation" parent="." unique_id=2096854138 instance=ExtResource("8_400sg")]
 position = Vector2(-3, 4)
 mass = 1.0
+max_health = 10000
+armour = 50
 collision_damage = 20
