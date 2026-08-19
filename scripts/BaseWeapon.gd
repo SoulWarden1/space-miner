@@ -6,6 +6,8 @@ class_name BaseWeapon
 @export var projectile_scene: PackedScene
 ## The fire rate per second
 @export var fire_rate := 1.0
+## The spread of projectiles in degrees
+@export var spread: float = 0.0
 var muzzles: Array[Marker2D]
 
 @onready var weapon_sound_player = $WeaponSoundPlayer

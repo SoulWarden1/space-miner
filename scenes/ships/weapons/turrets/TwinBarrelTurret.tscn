@@ -9,6 +9,7 @@
 rotate_speed = 2.0
 projectile_scene = ExtResource("2_idil4")
 fire_rate = 0.8
+spread = 2.0
 weapon_sound = ExtResource("3_idil4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1906463159]

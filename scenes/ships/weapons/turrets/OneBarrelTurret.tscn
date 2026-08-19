@@ -8,6 +8,7 @@
 [node name="OneBarrelTurret" unique_id=1228362028 instance=ExtResource("1_8jwpu")]
 position = Vector2(0, -20)
 projectile_scene = ExtResource("2_s6ncv")
+spread = 1.0
 weapon_sound = ExtResource("3_s6ncv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1866176575]

@@ -66,10 +66,12 @@ func _fire_from_muzzle(muzzle: Marker2D):
 		"ProjectileManager"
 	)
 
+	var projectile_deviation = randf_range(-spread, spread)
+
 	projectile_manager.spawn_projectile(
 		projectile_scene,
 		muzzle.global_position,
-		global_rotation,
+		global_rotation + deg_to_rad(projectile_deviation),
 		get_multiplayer_authority()
 	)
 
