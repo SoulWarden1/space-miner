@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bmrarjv5dmymk" path="res://scripts/asteroid_manager.gd" id="5_s0nni"]
 [ext_resource type="Script" uid="uid://cprtxmbtwuwk3" path="res://scripts/ore_manager.gd" id="7_kiw3p"]
 [ext_resource type="PackedScene" uid="uid://dtg2jphv8ah71" path="res://scenes/stations/first_station.tscn" id="8_400sg"]
+[ext_resource type="PackedScene" uid="uid://bexu355i3706f" path="res://scenes/shop/shop.tscn" id="9_g4kob"]
 
 [node name="Game" type="Node2D" unique_id=1429756595]
 
@@ -60,3 +61,5 @@ mass = 1.0
 max_health = 10000
 armour = 50
 collision_damage = 20
+
+[node name="Shop" parent="." unique_id=1568729743 instance=ExtResource("9_g4kob")]

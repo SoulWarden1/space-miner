@@ -5,7 +5,7 @@ class_name PlayerShip
 @export var torque := 10000.0
 @export var max_speed := 500.0
 var inventory := {}
-@onready var boost_component: BaseComponent = get_node_or_null("BoostComponent")
+@onready var boost_component: BaseModule = get_node_or_null("Modules/BoostComponent")
 
 
 func get_input() -> Vector2:
@@ -28,7 +28,12 @@ func handle_movement() -> void:
 	var direction = get_input()
 
 	if direction.length() != 0:
-		var boost = boost_component.get_boost()
+		var boost
+		if boost_component:
+			boost = boost_component.get_boost()
+		else:
+			boost = 1
+
 		apply_central_force(direction.rotated(rotation) * thrust * boost)
 
 func handle_rotation() -> void:

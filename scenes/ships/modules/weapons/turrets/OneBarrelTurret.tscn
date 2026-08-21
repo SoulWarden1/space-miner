@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://r3gievvebdyk"]
 
-[ext_resource type="PackedScene" uid="uid://blildhylg3ahm" path="res://scenes/ships/weapons/turrets/BaseTurret.tscn" id="1_8jwpu"]
+[ext_resource type="PackedScene" uid="uid://blildhylg3ahm" path="res://scenes/ships/modules/weapons/turrets/BaseTurret.tscn" id="1_8jwpu"]
 [ext_resource type="Texture2D" uid="uid://cijp8oj5xbk2v" path="res://assets/Turret.png" id="2_ag5vi"]
 [ext_resource type="PackedScene" uid="uid://1amc15lqn5ab" path="res://scenes/projectiles/Bullet.tscn" id="2_s6ncv"]
 [ext_resource type="AudioStream" uid="uid://bhe0me7jrjvgx" path="res://assets/audio/Gun Sound Edited.mp3" id="3_s6ncv"]

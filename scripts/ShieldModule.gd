@@ -1,4 +1,4 @@
-extends BaseComponent
+extends BaseModule
 
 signal shield_updated(current_shield, max_shield)
 

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c07g8tskd6dqt"]
+
+[ext_resource type="PackedScene" uid="uid://duuwogfuqsvrc" path="res://scenes/ships/modules/BaseModule.tscn" id="1_2sw5p"]
+[ext_resource type="Script" uid="uid://cryiqg3yseyd4" path="res://scripts/BoostModule.gd" id="2_im5b0"]
+
+[node name="BoostModule" unique_id=1973102539 instance=ExtResource("1_2sw5p")]
+script = ExtResource("2_im5b0")
+boost_factor = 6.0
+max_boost_fuel = 400.0
+boost_cooldown_time = 3.0
+boost_regenerate_rate = 5.0
+
+[node name="Cooldown" type="Timer" parent="." index="0" unique_id=2132672321]
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

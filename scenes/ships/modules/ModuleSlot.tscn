@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c0nbbibi8kdgn"]
+
+[ext_resource type="Script" uid="uid://blgciwi6gevxi" path="res://scripts/ModuleSlot.gd" id="1_8wpf6"]
+
+[node name="ModuleSlot" type="Node2D" unique_id=816755882]
+script = ExtResource("1_8wpf6")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://doohc4bygkxyt"]
 
-[ext_resource type="PackedScene" uid="uid://d2xit4oef4ix7" path="res://scenes/ships/weapons/BaseWeapon.tscn" id="1_81iqk"]
+[ext_resource type="PackedScene" uid="uid://d2xit4oef4ix7" path="res://scenes/ships/modules/weapons/BaseWeapon.tscn" id="1_81iqk"]
 [ext_resource type="Script" uid="uid://cefhnguvfhx5w" path="res://scripts/BaseCannon.gd" id="2_hrr60"]
 
 [node name="BaseCannon" unique_id=1228362028 instance=ExtResource("1_81iqk")]

@@ -2,10 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dvtmjeb4me8n8" path="res://scenes/ships/player_ships/PlayerShip.tscn" id="1_pl85r"]
 [ext_resource type="Texture2D" uid="uid://dnohhh4ifgd6h" path="res://assets/icon.svg" id="2_45p5e"]
-[ext_resource type="PackedScene" uid="uid://lte0ma8ut0fb" path="res://scenes/ships/components/ShieldComponent.tscn" id="3_p0xev"]
-[ext_resource type="PackedScene" uid="uid://r3gievvebdyk" path="res://scenes/ships/weapons/turrets/OneBarrelTurret.tscn" id="4_w1p3h"]
-[ext_resource type="PackedScene" uid="uid://s3lnbroacwhy" path="res://scenes/ships/weapons/turrets/TwinBarrelTurret.tscn" id="5_vjir2"]
-[ext_resource type="PackedScene" uid="uid://c07g8tskd6dqt" path="res://scenes/ships/components/BoostComponent.tscn" id="6_p0xev"]
+[ext_resource type="PackedScene" uid="uid://c0nbbibi8kdgn" path="res://scenes/ships/modules/ModuleSlot.tscn" id="3_e5pga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rw38"]
 size = Vector2(144, 432)
@@ -21,13 +18,12 @@ texture = ExtResource("2_45p5e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=18119302]
 shape = SubResource("RectangleShape2D_6rw38")
 
-[node name="OneBarrelTurret" parent="." index="3" unique_id=1228362028 instance=ExtResource("4_w1p3h")]
-position = Vector2(0, -197)
+[node name="Misc" parent="Modules" parent_id_path=PackedInt32Array(1108869019) index="0" unique_id=816755882 instance=ExtResource("3_e5pga")]
+position = Vector2(0, 174)
+slot_type = 3
 
-[node name="TwinBarrelTurret" parent="." index="4" unique_id=1375021001 instance=ExtResource("5_vjir2")]
-position = Vector2(0, 194)
+[node name="FrontWeapon" parent="Modules" parent_id_path=PackedInt32Array(1108869019) index="1" unique_id=1179504821 instance=ExtResource("3_e5pga")]
+position = Vector2(0, -194)
 
-[node name="ShieldComponent" parent="." index="5" unique_id=1973102539 instance=ExtResource("3_p0xev")]
-
-[node name="BoostComponent" parent="." index="6" unique_id=1536264618 instance=ExtResource("6_p0xev")]
-max_boost_fuel = 400.0
+[node name="RearWeapon" parent="Modules" parent_id_path=PackedInt32Array(1108869019) index="2" unique_id=1946645486 instance=ExtResource("3_e5pga")]
+position = Vector2(0, 174)

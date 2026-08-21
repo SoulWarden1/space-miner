@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://crh4mw2ujmuk2"]
+
+[ext_resource type="PackedScene" uid="uid://duuwogfuqsvrc" path="res://scenes/ships/modules/BaseModule.tscn" id="1_cdmul"]
+
+[node name="ArmourModule" unique_id=1973102539 instance=ExtResource("1_cdmul")]

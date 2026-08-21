@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dvtmjeb4me8n8" path="res://scenes/ships/player_ships/PlayerShip.tscn" id="1_gdqlx"]
 [ext_resource type="Texture2D" uid="uid://dnohhh4ifgd6h" path="res://assets/icon.svg" id="2_al11u"]
-[ext_resource type="PackedScene" uid="uid://r3gievvebdyk" path="res://scenes/ships/weapons/turrets/OneBarrelTurret.tscn" id="3_68v3m"]
+[ext_resource type="PackedScene" uid="uid://r3gievvebdyk" path="res://scenes/ships/modules/weapons/turrets/OneBarrelTurret.tscn" id="3_68v3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rw38"]
 size = Vector2(128, 128)

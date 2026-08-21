@@ -16,7 +16,7 @@ var health: int
 var collision_cooldown := false
 @export var can_take_collision_damage := true
 
-@onready var shield: BaseComponent = get_node_or_null("ShieldComponent")
+@onready var shield: BaseModule = get_node_or_null("Modules/ShieldComponent")
 
 func _ready():
 	health = max_health

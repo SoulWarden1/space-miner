@@ -1,4 +1,4 @@
-extends BaseComponent
+extends BaseModule
 
 signal boost_updated(boost_fuel, max_boost_fuel)
 

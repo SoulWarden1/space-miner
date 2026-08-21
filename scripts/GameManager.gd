@@ -6,6 +6,7 @@ extends Node
 @onready var player_spawner: MultiplayerSpawner = $"../PlayerMultiplayerSpawner"
 @onready var camera: Camera2D = $"../Camera2D"
 @onready var hud: Node = $"../HUD"
+@onready var shop: Control = $"../Shop"
 var local_player: BaseShip
 var station: BaseStation
 
@@ -186,3 +187,12 @@ func generate_asteroids():
 			break
 
 		i += 1
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("shop"):
+		if shop.visible:
+			shop.close_menu()
+			camera.set_target(local_player)
+		else:
+			shop.open_for_ship(local_player)
+			camera.set_target(shop)
